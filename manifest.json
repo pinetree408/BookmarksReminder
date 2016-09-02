@@ -1,0 +1,15 @@
+{
+  "name": "BookmarksReminder",
+  "version": "0.0.1",
+  "description": "A browser action with a popup dump of all bookmarks.",
+  "permissions": [
+    "bookmarks"
+  ],
+  "browser_action": {
+      "default_title": "BookmarksReminder",
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+  },
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
+}
