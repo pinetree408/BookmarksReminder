@@ -5,6 +5,7 @@ function dumpBookmarks(query) {
       $('#bookmarks').append(dumpTreeNodes(bookmarkTreeNodes, query));
     });
 }
+
 function dumpTreeNodes(bookmarkNodes, query) {
   var list = $('<ul>');
   var i;
@@ -13,6 +14,7 @@ function dumpTreeNodes(bookmarkNodes, query) {
   }
   return list;
 }
+
 function dumpNode(bookmarkNode, query) {
   if (bookmarkNode.title) {
     if (query && !bookmarkNode.children) {
@@ -39,6 +41,20 @@ function dumpNode(bookmarkNode, query) {
   }
   return li;
 }
+
+function save() {
+  var bookmarks = 0;
+  chrome.storage.local.set({'bookmarks': bookmarks});
+}
+
+function load() {
+  chrome.storage.local.get('bookmarks', function (result) {
+    alert(result.bookmarks);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   dumpBookmarks();
+  save();
+  load();
 });
