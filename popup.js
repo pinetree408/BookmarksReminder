@@ -30,10 +30,27 @@ function dumpNode(bookmarkNode, query) {
      * the bookmark url.
      */
     anchor.click(function() {
+      chrome.storage.local.get(bookmarkNode.title, function(result) {
+        if (result[bookmarkNode.title] != undefined) {
+	  var obj = {};
+	  obj[bookmarkNode.title] = result[bookmarkNode.title] + 1;
+          chrome.storage.local.set(obj);
+	}
+      });
       chrome.tabs.create({url: bookmarkNode.url});
     });
     var span = $('<span>');
     span.append(anchor);
+    chrome.storage.local.get(bookmarkNode.title, function(result) {
+      if (result[bookmarkNode.title]) {
+        span.append(result[bookmarkNode.title]);
+      } else {
+	var obj = {}
+	obj[bookmarkNode.title] = 0
+        chrome.storage.local.set(obj);
+        span.append(0);
+      }
+    });
   }
   var li = $(bookmarkNode.title ? '<li>' : '<div>').append(span);
   if (bookmarkNode.children && bookmarkNode.children.length > 0) {
@@ -42,19 +59,6 @@ function dumpNode(bookmarkNode, query) {
   return li;
 }
 
-function save() {
-  var bookmarks = 0;
-  chrome.storage.local.set({'bookmarks': bookmarks});
-}
-
-function load() {
-  chrome.storage.local.get('bookmarks', function (result) {
-    alert(result.bookmarks);
-  });
-}
-
 document.addEventListener('DOMContentLoaded', function () {
   dumpBookmarks();
-  save();
-  load();
 });
