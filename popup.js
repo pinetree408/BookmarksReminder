@@ -61,29 +61,29 @@ function dumpNode(bookmarkNode, query) {
 
 var alarmClock = {
 
-        bookmark: "initial",
+  bookmark: "initial",
 
-        onHandler : function(e) {
-            chrome.storage.local.get(null, function(items) {
-	      var allKeys = Object.keys(items);
-              var randIndex = Math.floor(Math.random() * 100);
-              alarmClock.bookmark = allKeys[randIndex];
-              chrome.alarms.create(alarmClock.bookmark, {delayInMinutes: 0.1, periodInMinutes: 0.2} );
-              window.close();
-	    });
-        },
+  onHandler : function(e) {
+    chrome.storage.local.get(null, function(items) {
+      var allKeys = Object.keys(items);
+      var randIndex = Math.floor(Math.random() * 100);
+      alarmClock.bookmark = allKeys[randIndex];
+      chrome.alarms.create(alarmClock.bookmark, {delayInMinutes: 0.1, periodInMinutes: 0.2} );
+      window.close();
+    });
+  },
 
-        offHandler : function(e) {
-            chrome.alarms.clear(alarmClock.bookmark);
-            window.close();
-        },
+  offHandler : function(e) {
+    chrome.alarms.clear(alarmClock.bookmark);
+    window.close();
+  },
 
-        setup: function() {
-            var a = document.getElementById('alarmOn');
-            a.addEventListener('click',  alarmClock.onHandler );
-            var a = document.getElementById('alarmOff');
-            a.addEventListener('click',  alarmClock.offHandler );
-        }
+  setup: function() {
+    var alarmOn = document.getElementById('alarmOn');
+    alarmOn.addEventListener('click',  alarmClock.onHandler );
+    var alarmOff = document.getElementById('alarmOff');
+    alarmOff.addEventListener('click',  alarmClock.offHandler );
+  }
 };
 
 document.addEventListener('DOMContentLoaded', function () {
