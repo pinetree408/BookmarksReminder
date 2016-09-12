@@ -74,7 +74,8 @@ var alarmClock = {
   },
 
   offHandler : function(e) {
-    chrome.alarms.clear(alarmClock.bookmark);
+    //chrome.alarms.clear(alarmClock.bookmark);
+    chrome.alarms.clearAll();
     window.close();
   },
 
