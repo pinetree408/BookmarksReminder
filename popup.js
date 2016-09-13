@@ -69,21 +69,22 @@ var alarmClock = {
       var randIndex = Math.floor(Math.random() * 100);
       alarmClock.bookmark = allKeys[randIndex];
       chrome.alarms.create(alarmClock.bookmark, {delayInMinutes: 0.1, periodInMinutes: 0.2} );
-      window.close();
+      //window.close();
     });
   },
 
   offHandler : function(e) {
-    //chrome.alarms.clear(alarmClock.bookmark);
-    chrome.alarms.clearAll();
-    window.close();
+    console.log('test:' + alarmClock.bookmark);
+    chrome.alarms.clear(alarmClock.bookmark, function(result){
+      console.log(result);
+    });
+    //chrome.alarms.clearAll();
+    //window.close();
   },
 
   setup: function() {
-    var alarmOn = document.getElementById('alarmOn');
-    alarmOn.addEventListener('click',  alarmClock.onHandler );
-    var alarmOff = document.getElementById('alarmOff');
-    alarmOff.addEventListener('click',  alarmClock.offHandler );
+    document.getElementById('alarmOn').addEventListener('click', alarmClock.onHandler);
+    document.getElementById('alarmOff').addEventListener('click', alarmClock.offHandler);
   }
 };
 
