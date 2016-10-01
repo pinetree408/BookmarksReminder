@@ -61,25 +61,19 @@ function dumpNode(bookmarkNode, query) {
 
 var alarmClock = {
 
-  bookmark: "initial",
-
   onHandler : function(e) {
     chrome.storage.local.get(null, function(items) {
       var allKeys = Object.keys(items);
       var randIndex = Math.floor(Math.random() * 100);
-      alarmClock.bookmark = allKeys[randIndex];
-      chrome.alarms.create(alarmClock.bookmark, {delayInMinutes: 0.1, periodInMinutes: 0.2} );
-      //window.close();
+      bookmark = allKeys[randIndex];
+      chrome.alarms.create(bookmark, {delayInMinutes: 0.1, periodInMinutes: 0.2});
     });
   },
 
   offHandler : function(e) {
-    console.log('test:' + alarmClock.bookmark);
-    chrome.alarms.clear(alarmClock.bookmark, function(result){
+    chrome.alarms.clearAll(function(result){
       console.log(result);
     });
-    //chrome.alarms.clearAll();
-    //window.close();
   },
 
   setup: function() {
