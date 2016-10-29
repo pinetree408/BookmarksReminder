@@ -7,7 +7,7 @@ function dumpBookmarks(query) {
 }
 
 function dumpTreeNodes(bookmarkNodes, query) {
-  var list = $('<ul>');
+  var list = $('<div>');
   var i;
   for (i = 0; i < bookmarkNodes.length; i++) {
     list.append(dumpNode(bookmarkNodes[i], query));
@@ -16,43 +16,63 @@ function dumpTreeNodes(bookmarkNodes, query) {
 }
 
 function dumpNode(bookmarkNode, query) {
+
   if (bookmarkNode.title) {
     if (query && !bookmarkNode.children) {
       if (String(bookmarkNode.title).indexOf(query) == -1) {
-        return $('<span></span>');
+        return $('<div></div>');
       }
     }
-    var anchor = $('<a>');
-    anchor.attr('href', bookmarkNode.url);
-    anchor.text(bookmarkNode.title);
-    /*
-     * When clicking on a bookmark in the extension, a new tab is fired with
-     * the bookmark url.
-     */
-    anchor.click(function() {
-      chrome.storage.local.get(bookmarkNode.title, function(result) {
-        if (result[bookmarkNode.title] != undefined) {
-	  var obj = {};
-	  obj[bookmarkNode.title] = result[bookmarkNode.title] + 1;
-          chrome.storage.local.set(obj);
-	}
+
+
+    if (bookmarkNode.url) {
+      var anchor = $('<a>');
+      anchor.css({
+        'float': 'left'
       });
-      chrome.tabs.create({url: bookmarkNode.url});
-    });
-    var span = $('<span>');
-    span.append(anchor);
-    chrome.storage.local.get(bookmarkNode.title, function(result) {
-      if (result[bookmarkNode.title]) {
-        span.append(result[bookmarkNode.title]);
-      } else {
-	var obj = {}
-	obj[bookmarkNode.title] = 0
-        chrome.storage.local.set(obj);
-        span.append(0);
-      }
-    });
+      anchor.attr('href', bookmarkNode.url);
+      anchor.text(bookmarkNode.title);
+      anchor.click(function() {
+        chrome.storage.local.get(bookmarkNode.title, function(result) {
+          if (result[bookmarkNode.title] != undefined) {
+	    var obj = {};
+	    obj[bookmarkNode.title] = result[bookmarkNode.title] + 1;
+            chrome.storage.local.set(obj);
+	  }
+        });
+        chrome.tabs.create({url: bookmarkNode.url});
+      });
+
+      var readCount = $('<div>');
+      readCount.css({
+        'float': 'left'
+      });
+      chrome.storage.local.get(bookmarkNode.title, function(result) {
+        if (result[bookmarkNode.title]) {
+          readCount.append(result[bookmarkNode.title]);
+        } else {
+	  var obj = {}
+	  obj[bookmarkNode.title] = 0
+          chrome.storage.local.set(obj);
+          readCount.append(0);
+        }
+      });
+
+      var bookmarkItem = $('<div>');
+      bookmarkItem.css({
+        'width': '100%',
+        'height': '15px'
+      });
+      bookmarkItem.append(anchor);
+      bookmarkItem.append(readCount);
+    } else {
+      var bookmarkItem = $('<div>');
+      bookmarkItem.text(bookmarkNode.title);
+    }
+
   }
-  var li = $(bookmarkNode.title ? '<li>' : '<div>').append(span);
+
+  var li = $('<div>').append(bookmarkItem);
   if (bookmarkNode.children && bookmarkNode.children.length > 0) {
     li.append(dumpTreeNodes(bookmarkNode.children, query));
   }
@@ -72,6 +92,7 @@ var alarmClock = {
 
   offHandler : function(e) {
     chrome.alarms.clearAll(function(result){
+      alert("Alarms are closed");
       console.log(result);
     });
   },
