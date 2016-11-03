@@ -84,7 +84,7 @@ var alarmClock = {
   onHandler : function(e) {
     chrome.storage.local.get(null, function(items) {
       var allKeys = Object.keys(items);
-      var randIndex = Math.floor(Math.random() * 100);
+      var randIndex = Math.floor(Math.random() * allKeys.length);
       bookmark = allKeys[randIndex];
       chrome.alarms.create(bookmark, {delayInMinutes: 0.1, periodInMinutes: 0.2});
     });
@@ -92,8 +92,7 @@ var alarmClock = {
 
   offHandler : function(e) {
     chrome.alarms.clearAll(function(result){
-      alert("Alarms are closed");
-      console.log(result);
+      console.log(result); // for debug
     });
   },
 
