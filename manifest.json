@@ -11,14 +11,14 @@
   ],
 
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["js/background.js"],
     "persistent": false
   },
 
   "browser_action": {
       "default_title": "BookmarksReminder",
-      "default_icon": "icon.png",
-      "default_popup": "index.html"
+      "default_icon": "static/icon.png",
+      "default_popup": "templates/index.html"
   },
 
   "manifest_version": 2,
