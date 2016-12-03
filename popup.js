@@ -1,4 +1,3 @@
-// Traverse the bookmark tree, and print the folder and nodes.
 function dumpBookmarks(query) {
   var bookmarkTreeNodes = chrome.bookmarks.getTree(
     function(bookmarkTreeNodes) {
@@ -27,9 +26,6 @@ function dumpNode(bookmarkNode, query) {
 
     if (bookmarkNode.url) {
       var anchor = $('<a>');
-      anchor.css({
-        'float': 'left'
-      });
       anchor.attr('href', bookmarkNode.url);
       anchor.text(bookmarkNode.title);
       anchor.click(function() {
@@ -44,9 +40,6 @@ function dumpNode(bookmarkNode, query) {
       });
 
       var readCount = $('<div>');
-      readCount.css({
-        'float': 'left'
-      });
       chrome.storage.local.get(bookmarkNode.title, function(result) {
         if (result[bookmarkNode.title]) {
           readCount.append(result[bookmarkNode.title]);
@@ -59,10 +52,6 @@ function dumpNode(bookmarkNode, query) {
       });
 
       var bookmarkItem = $('<div>');
-      bookmarkItem.css({
-        'width': '100%',
-        'height': '15px'
-      });
       bookmarkItem.append(anchor);
       bookmarkItem.append(readCount);
     } else {
@@ -91,9 +80,7 @@ var alarmClock = {
   },
 
   offHandler : function(e) {
-    chrome.alarms.clearAll(function(result){
-      console.log(result); // for debug
-    });
+    chrome.alarms.clearAll();
   },
 
   setup: function() {
