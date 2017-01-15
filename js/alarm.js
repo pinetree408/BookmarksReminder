@@ -2,10 +2,10 @@
   'use strict';
 
   function checkAlarm(callback) {
-    chrome.storage.local.get('alarmName', function(result) {
+    chrome.storage.local.get("bookmark", function(result) {
       chrome.alarms.getAll(function(alarms) {
         var hasAlarm = alarms.some(function(a) {
-          return a.name == result['alarmName'];
+          return a.name == result["bookmark"]["title"];
         });
         var newLabel;
         if (hasAlarm) {
@@ -24,19 +24,19 @@
   function createAlarm() {
     dumpBookmarks(function(result){
       var randomIndex = Math.floor(Math.random() * result.length);
-      var alarmName = result[randomIndex]['title'];
-      chrome.alarms.create(alarmName, {
+      var bookmarkObj = result[randomIndex];
+      chrome.alarms.create(bookmarkObj["title"], {
         delayInMinutes: 0.1, periodInMinutes: 0.3});
 
       var obj = {};
-      obj['alarmName'] = alarmName
+      obj["bookmark"] = bookmarkObj
       chrome.storage.local.set(obj);
     });
   }
 
   function cancelAlarm() {
-    chrome.storage.local.get('alarmName',function(result) { 
-      chrome.alarms.clear(result['alarmName']);
+    chrome.storage.local.get("bookmark",function(result) { 
+      chrome.alarms.clear(result["bookmark"]["title"]);
     });
   }
 
