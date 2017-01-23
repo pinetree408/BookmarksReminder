@@ -25,9 +25,14 @@
     dumpBookmarks(function(result){
       var randomIndex = Math.floor(Math.random() * result.length);
       var bookmarkObj = result[randomIndex];
-      chrome.alarms.create(bookmarkObj["title"], {
-        delayInMinutes: 0.1, periodInMinutes: 0.3});
-
+      chrome.storage.local.get("setting", function(result) {
+        var setting = 60  
+        if (result["setting"]) {
+	    setting = result["setting"]
+	}
+        chrome.alarms.create(bookmarkObj["title"], {
+          delayInMinutes: Number(setting), periodInMinutes: Number(setting)});
+      });
       var obj = {};
       obj["bookmark"] = bookmarkObj
       chrome.storage.local.set(obj);
