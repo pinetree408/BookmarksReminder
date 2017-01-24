@@ -23,3 +23,10 @@ function dumpNode(bookmarkNode, list) {
     dumpTreeNodes(bookmarkNode.children, list);
   }
 }
+dumpBookmarks(
+  function(result) {
+    var obj = {};
+    obj["bookmarkList"] = result;
+    chrome.storage.local.set(obj);
+  }
+);

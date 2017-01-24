@@ -14,7 +14,10 @@ function popupOpen(bookmark) {
 }
 
 chrome.alarms.onAlarm.addListener(function(alarm) {
-  chrome.storage.local.get("bookmark", function(result) {
-    popupOpen(result["bookmark"]);
+  chrome.storage.local.get("bookmarkList", function(result){
+    var bookmarkList = result["bookmarkList"];
+    var randomIndex = Math.floor(Math.random() * bookmarkList.length);
+    var bookmarkObj = bookmarkList[randomIndex];
+    popupOpen(bookmarkObj);
   });
 });
