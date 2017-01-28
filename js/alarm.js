@@ -29,11 +29,13 @@
       }
       chrome.alarms.create(alarmName, {
         delayInMinutes: Number(setting), periodInMinutes: Number(setting)});
+      checkAlarm();
     });
   }
 
   function cancelAlarm() {
     chrome.alarms.clear(alarmName);
+    checkAlarm();
   }
 
   function doToggleAlarm() {
@@ -43,7 +45,6 @@
       } else {
         createAlarm();
       }
-      checkAlarm();
     });
   }
 
