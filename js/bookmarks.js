@@ -17,6 +17,7 @@ function dumpNode(bookmarkNode, list) {
     var bookmarkObject = {};
     bookmarkObject['url'] = bookmarkNode.url;
     bookmarkObject['title'] = bookmarkNode.title;
+    bookmarkObject['added'] = bookmarkNode.dateAdded;
     list.push(bookmarkObject);
   }
   if (bookmarkNode.children && bookmarkNode.children.length > 0) {

@@ -7,9 +7,11 @@ function popupOpen(bookmark) {
   var winPosTop = (screen.height - winHeight) / 2;
   var winOpt = "width="+winWidth+",height="+winHeight+",top="+winPosTop+",left="+winPosLeft;
   var popUp = window.open(winURL, winName, winOpt + ",menubar=no,status=no,scrollbars=no,resizable=no");
+  var date = new Date(bookmark["added"]);
   popUp.window.onload = function() {
     popUp.document.getElementById("title").innerHTML = bookmark["title"];
     popUp.document.getElementById("url").href = bookmark["url"];
+    popUp.document.getElementById("dateAdded").innerHTML = date.toString();
   }
 }
 
