@@ -31,7 +31,9 @@ chrome.storage.local.get("bookmarkList", function(result) {
         var obj = {};
         obj["bookmarkList"] = result;
         chrome.storage.local.set(obj);
+        document.getElementById('bookmarksNum').innerText = result["bookmarkList"].length;
       }
     );
   }
+  document.getElementById('bookmarksNum').innerText = result["bookmarkList"].length;
 });
