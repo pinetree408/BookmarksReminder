@@ -23,3 +23,17 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
     popupOpen(bookmarkObj);
   });
 });
+chrome.bookmarks.onCreated.addListener(function(id, bookmark) {
+  if (!bookmark.children) {
+    var bookmarkObject = {};
+    bookmarkObject['url'] = bookmark.url;
+    bookmarkObject['title'] = bookmark.title;
+    bookmarkObject['added'] = bookmark.dateAdded;
+    chrome.storage.local.get("bookmarkList", function(result){
+      var obj = {};
+      obj["bookmarkList"] = result["bookmarkList"];
+      obj["bookmarkList"].push(bookmarkObject);
+      chrome.storage.local.set(obj);
+    });
+  }
+});
