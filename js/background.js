@@ -23,6 +23,7 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
     popupOpen(bookmarkObj);
   });
 });
+
 chrome.bookmarks.onCreated.addListener(function(id, bookmark) {
   if (!bookmark.children) {
     var bookmarkObject = {};
@@ -36,4 +37,17 @@ chrome.bookmarks.onCreated.addListener(function(id, bookmark) {
       chrome.storage.local.set(obj);
     });
   }
+});
+
+chrome.bookmarks.onRemoved.addListener(function(id, removeInfo) {
+  chrome.storage.local.get("bookmarkList", function(result){
+    var obj = {};
+    obj["bookmarkList"] = [];
+    for (var i = 0; i < result["bookmarkList"].length; i++) {
+      if (removeInfo.node.title != result["bookmarkList"][i].title) {
+        obj["bookmarkList"].push(result["bookmarkList"][i]);
+      }
+    }
+    chrome.storage.local.set(obj);
+  });
 });
