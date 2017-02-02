@@ -13,14 +13,30 @@ function popupOpen(bookmark) {
     popUp.document.getElementById("url").href = bookmark["url"];
     popUp.document.getElementById("dateAdded").innerHTML = date.toString();
   }
+  popUp.window.onbeforeunload = function() {
+    chrome.storage.local.get("isAlarmClosed", function(result){
+      if (result["isAlarmClosed"] == false){
+        var obj = {};
+        obj["isAlarmClosed"] = true;
+        chrome.storage.local.set(obj);
+      }
+    });
+  }
 }
 
 chrome.alarms.onAlarm.addListener(function(alarm) {
-  chrome.storage.local.get("bookmarkList", function(result){
-    var bookmarkList = result["bookmarkList"];
-    var randomIndex = Math.floor(Math.random() * bookmarkList.length);
-    var bookmarkObj = bookmarkList[randomIndex];
-    popupOpen(bookmarkObj);
+  chrome.storage.local.get("isAlarmClosed", function(result) {
+    if((result["isAlarmClosed"] == undefined) || (result["isAlarmClosed"] == true)) {
+      var obj = {};
+      obj["isAlarmClosed"] = false;
+      chrome.storage.local.set(obj);
+      chrome.storage.local.get("bookmarkList", function(result){
+        var bookmarkList = result["bookmarkList"];
+        var randomIndex = Math.floor(Math.random() * bookmarkList.length);
+        var bookmarkObj = bookmarkList[randomIndex];
+        popupOpen(bookmarkObj);
+      });
+    }
   });
 });
 

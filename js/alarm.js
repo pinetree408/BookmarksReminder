@@ -23,7 +23,7 @@
 
   function createAlarm() {
     chrome.storage.local.get("setting", function(result) {
-      var setting = 60  
+      var setting = 60;
       if (result["setting"]) {
 	  setting = result["setting"]
       }
