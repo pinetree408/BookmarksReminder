@@ -1,5 +1,30 @@
-<div id="title"></div>
-<div id="url-container">
-  <a href="" id="url" target="_blank">바로가기</a>
-</div>
-<div id="dateAdded"></div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .row {
+        width: 400px;
+      }
+      .col {
+        float: left;
+	width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col">Title : </div>
+      <div class="col" id="title"></div>
+    </div>
+    <div class="row">
+      <div class="col">URL : </div>
+      <div class="col">
+        <a href="" id="url" target="_blank">바로가기</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">Added : </div>
+      <div class="col" id="dateAdded"></div>
+    </div>
+  </body>
+</html>

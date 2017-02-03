@@ -1,23 +1,35 @@
+<!DOCTYPE html>
 <html>
-<head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-</head>
-<body>
-  <div style="width:120px;">
+  <head>
+    <style>
+      .row {
+        width: 150px;
+      }
+      .col {
+        float: left;
+	width: 50%;
+      }
+    </style>
+  </head>
+  <body>
     <div>
-      Bookmarks Reminder
+      <div class="row">
+        Bookmarks Reminder
+      </div>
+      <div class="row">
+        <div class="col">Total : </div>
+        <div class="col" id="bookmarksNum"></div>
+      </div>
+      <div class="row">
+        <input type="number" id="setting-value" name="setting" min="15" max="120"/>
+        <button id="setting">setting</button>
+      </div>
+      <div class="row">
+        <button id="toggleAlarm">test</button>
+      </div>
     </div>
-    <div id="bookmarksNum"></div>
-    <div>
-      <input type="number" id="setting-value" name="setting" min="15" max="120"/>
-      <button id="setting">setting</button>
-    </div>
-    <div>
-      <button id="toggleAlarm">test</button>
-    </div>
-  </div>
-  <script src="../js/bookmarks.js"></script>
-  <script src="../js/alarm.js"></script>
-  <script src="../js/setting.js"></script>
-</body>
+    <script src="../js/bookmarks.js"></script>
+    <script src="../js/alarm.js"></script>
+    <script src="../js/setting.js"></script>
+  </body>
 </html>
