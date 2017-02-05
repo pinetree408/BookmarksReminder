@@ -9,6 +9,6 @@ chrome.storage.local.get("setting", function(result) {
   if (result["setting"]) {
     setting = result["setting"];
   }
-  document.getElementById("setting-value").value = setting; 
+  document.getElementById("setting-value-view").innerHTML = setting;
 });
 document.getElementById("setting").addEventListener("click", addSetting);

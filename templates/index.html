@@ -1,32 +1,104 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="../static/css/material.min.css">
+    <script src="../js/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
-      .row {
-        width: 150px;
+      body {
+        width: 300px;
       }
-      .col {
+      .page-content #key-values {
+        margin: auto;
+      }
+      .page-content #setting-input {
+        width: 49%;
         float: left;
-	width: 50%;
+      }
+      .page-content #setting {
+        width: 49%;
+        float: left;
+        margin-left: 2%;
+        margin-top: 15.5px;
+      }
+      .page-content #toggleAlarm {
+        display: block;
+        margin: auto;
+        vertical-align: middle;
       }
     </style>
   </head>
   <body>
-    <div>
-      <div class="row">
-        Bookmarks Reminder
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Bookmarks Reminder</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="mdl-navigation__link" href="">Link</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">BR</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
       </div>
-      <div class="row">
-        <div class="col">Total : </div>
-        <div class="col" id="bookmarksNum"></div>
-      </div>
-      <div class="row">
-        <input type="number" id="setting-value" name="setting" min="15" max="120"/>
-        <button id="setting">setting</button>
-      </div>
-      <div class="row">
-        <button id="toggleAlarm">test</button>
-      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <div class="mdl-grid">
+            <div class="mdl-cell">
+            <table id="key-values" class="mdl-data-table mdl-js-data-table">
+              <thead>
+                <tr>
+                  <th class="mdl-data-table__cell--non-numeric">Key</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">Total Bookmarks</td>
+                  <td id="bookmarksNum"></td>
+                </tr>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">Alarm Period Setting</td>
+                  <td id="setting-value-view"></td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+          <div class="mdl-grid">
+            <div class="mdl-cell">
+            <!-- Numeric Textfield with Floating Label -->
+            <form action="#">
+              <div id="setting-input" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="setting-value" name="setting" min="15" max="120">
+                <label class="mdl-textfield__label" for="setting-value">Minutes...</label>
+                <span class="mdl-textfield__error">Input is not a Minutes!</span>
+              </div>
+            </form>
+            <!-- Accent-colored raised button with ripple -->
+            <button id="setting" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+              Setting
+            </button>
+            </div>
+          </div>
+          <div class="mdl-grid">
+            <div class="mdl-cell">
+            <!-- Accent-colored raised button with ripple -->
+            <button id="toggleAlarm" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+              Button
+            </button>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
     <script src="../js/bookmarks.js"></script>
     <script src="../js/alarm.js"></script>
