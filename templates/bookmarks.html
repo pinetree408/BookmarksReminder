@@ -1,36 +1,71 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="../static/css/material.min.css">
+    <script src="../js/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
-      .container {
-        width: 400px;
-	margin: auto;
+      body {
+        width: 300px;
       }
-      .row {
-        width: 400px;
-      }
-      .col {
-        float: left;
-	width: 50%;
+      .page-content .mdl-cell {
+        margin: auto;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col">Title : </div>
-        <div class="col" id="title"></div>
-      </div>
-      <div class="row">
-        <div class="col">URL : </div>
-        <div class="col">
-          <a href="" id="url" target="_blank">바로가기</a>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Bookmarks Reminder</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="mdl-navigation__link" href="">Link</a>
+          </nav>
         </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">BR</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
       </div>
-      <div class="row">
-        <div class="col">Added : </div>
-        <div class="col" id="dateAdded"></div>
-      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <div class="mdl-grid">
+            <div class="mdl-cell">
+            <table id="key-values" class="mdl-data-table mdl-js-data-table">
+              <thead>
+                <tr>
+                  <th class="mdl-data-table__cell--non-numeric">Key</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">Title</td>
+                  <td id="title"></td>
+                </tr>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">URL</td>
+		  <td>
+                    <a href="" id="url" target="_blank">바로가기</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">Added</td>
+		  <td id="dateAdded"></td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+       </div>
+      </main>
     </div>
   </body>
 </html>
