@@ -17,7 +17,6 @@
 
   "browser_action": {
       "default_title": "BookmarksReminder",
-      "default_icon": "static/icon.png",
       "default_popup": "templates/index.html"
   },
 
