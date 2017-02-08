@@ -23,9 +23,12 @@
 
   function createAlarm() {
     chrome.storage.local.get("setting", function(result) {
-      var setting = 1;
+      var setting = 60;
+      if (debug == true) {
+        setting = 1;
+      }
       if (result["setting"]) {
-	  setting = result["setting"]
+	setting = result["setting"]
       }
       chrome.alarms.create(alarmName, {
         delayInMinutes: Number(setting), periodInMinutes: Number(setting)});
