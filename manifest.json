@@ -2,8 +2,8 @@
 
   "name": "BookmarksReminder",
 
-  "version": "0.0.1",
-  "description": "A browser action with a popup dump of all bookmarks.",
+  "version": "0.0.2",
+  "description": "This extension gives you a reminder alarm for bookmarks.",
   "permissions": [
     "bookmarks",
     "storage",
