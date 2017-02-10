@@ -7,6 +7,7 @@
     <style>
       body {
         width: 300px;
+        height: 448px;
       }
       .page-content #key-values {
         margin: auto;
@@ -30,26 +31,26 @@
   </head>
   <body>
     <!-- Always shows a header, even in smaller screens. -->
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
           <span class="mdl-layout-title">Bookmarks Reminder</span>
-          <!-- Add spacer, to align navigation to the right -->
-          <div class="mdl-layout-spacer"></div>
-          <!-- Navigation. We hide it in small screens. -->
-          <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <a class="mdl-navigation__link" href="">Link</a>
-          </nav>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+          <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Home</a>
+          <a href="#fixed-tab-2" class="mdl-layout__tab">About</a>
         </div>
       </header>
       <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">BR</span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="https://github.com/pinetree408/BookmarksReminder" target="_blank">Github</a>
         </nav>
       </div>
       <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
         <div class="page-content">
           <div class="mdl-grid">
             <div class="mdl-cell">
@@ -98,6 +99,26 @@
             </div>
           </div>
         </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+          <div class="page-content">
+            <div class="mdl-grid">
+              <div class="mdl-cell">
+                What is BookmarksReminder?
+              </div>
+            </div>
+            <div class="mdl-grid">
+              <div class="mdl-cell">
+                How to use?
+              </div>
+            </div>
+            <div class="mdl-grid">
+              <div class="mdl-cell">
+                How to Connect? 
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
     <script src="../js/develop.js"></script>
