@@ -5,14 +5,13 @@
     <script src="../js/material.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
-      body {
-        width: 300px;
-      }
-      .page-content .mdl-cell {
-        margin: auto;
-      }
       #key-values {
+        margin: auto;
         white-space: normal;
+      }
+      #urlActivate {
+        display: block;
+        margin: auto;
       }
     </style>
   </head>
@@ -41,30 +40,36 @@
         <div class="page-content">
           <div class="mdl-grid">
             <div class="mdl-cell">
-            <table id="key-values" class="mdl-data-table mdl-js-data-table">
-              <thead>
-                <tr>
-                  <th class="mdl-data-table__cell--non-numeric">Key</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="mdl-data-table__cell--non-numeric">Title</td>
-                  <td id="title"></td>
-                </tr>
-                <tr>
-                  <td class="mdl-data-table__cell--non-numeric">URL</td>
-		  <td>
-                    <a href="" id="url" target="_blank">바로가기</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="mdl-data-table__cell--non-numeric">Added</td>
-		  <td id="dateAdded"></td>
-                </tr>
-              </tbody>
-            </table>
+              <table id="key-values" class="mdl-data-table mdl-js-data-table">
+                <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Key</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Title</td>
+                    <td id="title"></td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">URL</td>
+		    <td id="url"></td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Added</td>
+		    <td id="dateAdded"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="mdl-grid">
+            <div class="mdl-cell">
+              <!-- Accent-colored raised button with ripple -->
+              <a target="_blank" href="" id="urlActivate" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                바로가기
+              </a>
             </div>
           </div>
        </div>

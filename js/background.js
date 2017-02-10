@@ -1,6 +1,6 @@
 function popupOpen(bookmark) {
-  var winWidth = 400;
-  var winHeight = 400;
+  var winWidth = 450;
+  var winHeight = 450;
   var winURL = "../templates/bookmarks.html";
   var winName = "";
   var winPosLeft = (screen.width - winWidth) / 2;
@@ -10,8 +10,9 @@ function popupOpen(bookmark) {
   var date = new Date(bookmark["added"]);
   popUp.window.onload = function() {
     popUp.document.getElementById("title").innerHTML = bookmark["title"];
-    popUp.document.getElementById("url").href = bookmark["url"];
+    popUp.document.getElementById("url").innerHTML = bookmark["url"];
     popUp.document.getElementById("dateAdded").innerHTML = date.toString();
+    popUp.document.getElementById("urlActivate").href = bookmark["url"];
   }
   popUp.window.onbeforeunload = function() {
     chrome.storage.local.get("isAlarmClosed", function(result){
