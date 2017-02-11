@@ -10,7 +10,9 @@ function popupOpen(bookmark) {
   var date = new Date(bookmark["added"]);
   popUp.window.onload = function() {
     popUp.document.getElementById("title").innerHTML = bookmark["title"];
-    popUp.document.getElementById("url").innerHTML = bookmark["url"];
+    chrome.bookmarks.get(bookmark["parent"], function(results) {
+      popUp.document.getElementById("parent").innerHTML = results[0].title;
+    });
     popUp.document.getElementById("dateAdded").innerHTML = date.toString();
     popUp.document.getElementById("urlActivate").href = bookmark["url"];
   }
@@ -47,6 +49,7 @@ chrome.bookmarks.onCreated.addListener(function(id, bookmark) {
     bookmarkObject['url'] = bookmark.url;
     bookmarkObject['title'] = bookmark.title;
     bookmarkObject['added'] = bookmark.dateAdded;
+    bookmarkObject['parent'] = bookmarkNode.parentId;
     chrome.storage.local.get("bookmarkList", function(result){
       var obj = {};
       obj["bookmarkList"] = result["bookmarkList"];
