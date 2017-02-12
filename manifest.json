@@ -2,7 +2,7 @@
 
   "name": "BookmarksReminder",
 
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "This extension gives you a reminder alarm for bookmarks.",
   "permissions": [
     "bookmarks",
