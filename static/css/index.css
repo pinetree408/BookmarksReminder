@@ -1,0 +1,26 @@
+body {
+  width: 300px;
+  height: 448px;
+}
+
+.page-content #key-values {
+  margin: auto;
+}
+
+.page-content #setting-input {
+  width: 49%;
+  float: left;
+}
+
+.page-content #setting {
+  width: 49%;
+  float: left;
+  margin-left: 2%;
+  margin-top: 15.5px;
+}
+
+.page-content #toggleAlarm {
+  display: block;
+  margin: auto;
+  vertical-align: middle;
+}
