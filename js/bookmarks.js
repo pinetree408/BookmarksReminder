@@ -6,36 +6,38 @@ function dumpBookmarks(callBack) {
       callBack(list);
     });
 }
+
 function dumpTreeNodes(bookmarkNodes, list) {
   var i;
   for (i = 0; i < bookmarkNodes.length; i++) {
     dumpNode(bookmarkNodes[i], list);
   }
 }
+
 function dumpNode(bookmarkNode, list) {
   if (!bookmarkNode.children) {
-    var bookmarkObject = {};
-    bookmarkObject['url'] = bookmarkNode.url;
-    bookmarkObject['title'] = bookmarkNode.title;
-    bookmarkObject['added'] = bookmarkNode.dateAdded;
-    bookmarkObject['parent'] = bookmarkNode.parentId;
+    var bookmarkObject = {
+      url: bookmarkNode.url,
+      title: bookmarkNode.title,
+      added: bookmarkNode.dateAdded,
+      parentId: bookmarkNode.parentId
+    };
     list.push(bookmarkObject);
   }
   if (bookmarkNode.children && bookmarkNode.children.length > 0) {
     dumpTreeNodes(bookmarkNode.children, list);
   }
 }
-chrome.storage.local.get("bookmarkList", function(result) {
-  if (!result["bookmarkList"]) {
+
+chrome.storage.local.get('bookmarkList', function(result) {
+  if (!result.bookmarkList) {
     dumpBookmarks(
       function(result) {
-        var obj = {};
-        obj["bookmarkList"] = result;
-        chrome.storage.local.set(obj);
+        chrome.storage.local.set({bookmarkList: result});
         document.getElementById('bookmarksNum').innerText = result.length;
       }
     );
   } else {
-    document.getElementById('bookmarksNum').innerText = result["bookmarkList"].length;
+    document.getElementById('bookmarksNum').innerText = result.bookmarkList.length;
   }
 });
