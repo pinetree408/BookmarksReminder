@@ -1,8 +1,12 @@
 {
 
   "name": "BookmarksReminder",
+  "author": "pinetree408(Sangyoon Lee)",
+  "icons": {
+    "128": "static/ext-icon/icon128.png"
+  },
 
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "This extension gives you a reminder alarm for bookmarks.",
   "permissions": [
     "bookmarks",
