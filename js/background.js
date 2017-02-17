@@ -1,3 +1,16 @@
+Date.prototype.format = function() {
+
+  var mm = this.getMonth() + 1; // getMonth() is zero-based
+  var dd = this.getDate();
+  var weekList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  return [this.getFullYear(),
+          (mm>9 ? '' : '0') + mm,
+          (dd>9 ? '' : '0') + dd,
+          weekList[this.getDay()]
+         ].join('. ');
+};
+
 function popupOpen(bookmark) {
   var winWidth = 450;
   var winHeight = 450;
@@ -15,7 +28,7 @@ function popupOpen(bookmark) {
     popUp.document.getElementById('urlActivate').href = bookmark.url;
 
     var date = new Date(bookmark.added);
-    popUp.document.getElementById('dateAdded').innerHTML = date.toString();
+    popUp.document.getElementById('dateAdded').innerHTML = date.format();
 
     chrome.bookmarks.get(bookmark.parentId, function(results) {
       popUp.document.getElementById('parent').innerHTML = results[0].title;
